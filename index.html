@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		
+		iframe {
+			width: 675px;
+			height: 590px;
+			margin-top: 12px;
+			margin-left: 83px;
+		}
+
+		img {
+			position: absolute;
+			top: 20px;
+			width: 1000px;
+			height: 600px;
+			pointer-events:none;
+		}
+
+
+	</style>
+
+
+
+	<head>
+		<title></title>
+	</head>
+	<body>
+
+	<img src="tv_frame_pixel.png">
+
+	<iframe id="tv" src="https://giphy.com/embed/Yqn9tE2E00k4U"></iframe>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<button onclick="changeChannel()">Change Channel</button>
+
+	</body>
+	<script type="text/javascript">
+
+		var tv = document.getElementById("tv");
+		var nextChannel = "";
+		var tvStatic = "https://giphy.com/embed/Yqn9tE2E00k4U";
+		var channelIndex = 0;
+
+		var channelOrder = constructChannels();
+
+		function changeChannel() {
+
+			tv.src = tvStatic;
+
+			nextChannel = channelOrder[channelIndex];
+
+			channelIndex++;
+
+			console.info(channelOrder);
+
+
+			setTimeout(function(){
+				tv.src = nextChannel;
+			}, 500);
+		}
+
+		function afterNoise(){
+			tv.src = nextChannel;
+		}
+
+		function getChannelArrayBeforeFire() {
+
+			var channels = [];
+
+			channels.push("fever_ferret.html?a=1");
+			channels.push("gone_fishing.html?a=1");;
+			channels.push("rainbow_noodle.html?a=1");
+			channels.push("reflection.html?a=1");
+			channels.push("a_sour_taste.html?a=1");
+
+			return shuffle(channels);
+		}
+
+		function getChannelArrayAfterFire() {
+
+			var channels = [];
+
+			channels.push("cube_pyramid_sphere.html?a=1");
+			channels.push("extra_nutrition.html?a=1");
+			channels.push("good_television.html?a=1");
+			channels.push("has_anyone_seen_the_remote.html?a=1");
+			channels.push("ripple.html?a=1");
+			channels.push("tiny_bean.html?a=1");
+			channels.push("whats_going_on.html?a=1");
+
+			return shuffle(channels);
+		}
+
+		function constructChannels() {
+
+			var channels = [];
+
+			channels = getChannelArrayBeforeFire();
+
+			channels.push("fire.html?a=1");
+			channels.push("perfect_eggs.html?a=1");
+			channels = channels.concat(getChannelArrayAfterFire());
+			channels.push("bubbles.html?a=1");
+
+			return channels;
+
+
+		}
+
+		function shuffle(array) {
+		  	var currentIndex = array.length, temporaryValue, randomIndex;
+
+		  	// While there remain elements to shuffle...
+		  	while (0 !== currentIndex) {
+
+		    // Pick a remaining element...
+		    randomIndex = Math.floor(Math.random() * currentIndex);
+		    currentIndex -= 1;
+
+		    // And swap it with the current element.
+		    temporaryValue = array[currentIndex];
+		    array[currentIndex] = array[randomIndex];
+		    array[randomIndex] = temporaryValue;
+	  	}
+
+  			return array;
+		}
+
+
+	</script>
+</html>
