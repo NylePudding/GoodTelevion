@@ -14,7 +14,19 @@
 			font-family: 'Raleway', sans-serif;
 			color: #1d1d1c;
 			font-size: 48px;
-		    margin-left: 300px;
+		    margin-left: 370px;
+		}
+
+		h2 {
+			font-family: 'Raleway', sans-serif;
+			font-size: 20px;
+			top: -20px;
+			left: 390px;
+			position: relative;
+		}
+
+		h2, a {
+			color: #1d1d1c;
 		}
 
 		button {
@@ -40,17 +52,43 @@
 		iframe {
 			width: 675px;
 			height: 540px;
-			margin-top: 19px;
+			margin-top: 20px;
 			margin-left: 83px;
+			background-image: url("tv_static.gif");
 		}
 
-		img {
+		#tvFrame {
 			position: absolute;
-			/*top: 27px;*/
-			top: 140px;
+			z-index: 5;
+			top: 22px;
 			width: 1000px;
 			height: 550px;
 			pointer-events:none;
+		}
+
+		#tvScanline {
+			position: absolute;
+			z-index: 2;
+			top: 22px;
+			width: 1000px;
+			height: 550px;
+			pointer-events:none;
+			animation: pulse 3s infinite;
+			
+		}
+
+		@keyframes pulse {
+			0% {
+				opacity: 0.3;
+			}
+
+			50% {
+				opacity: 0.6;
+			}
+
+			100% {
+				opacity: 0.3;
+			}
 		}
 
 
@@ -64,25 +102,27 @@
 	<body>
 
 
-	<h1>TV Guide</h1>
-	<h2>By <a href="">@NylePudding</a></h2>
+		<h1>TV Guide</h1>
+		<h2>By <a href="">@NylePudding</a></h2>
+		<div style="position: relative;">
+			<img id="tvFrame" src="tv_frame_pixel.png">
+			<img id="tvScanline" src="tv_scanline2.png">
 
-	<img src="tv_frame_pixel.png">
+			<iframe id="tv" src="tv_static.gif"></iframe>
 
-	<iframe id="tv" src="https://giphy.com/embed/Yqn9tE2E00k4U"></iframe>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<button onclick="changeChannel()">Change Channel</button>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+		<button onclick="changeChannel()">Change Channel</button>
 
 	</body>
 	<script type="text/javascript">
 
 		var tv = document.getElementById("tv");
 		var nextChannel = "";
-		var tvStatic = "https://giphy.com/embed/Yqn9tE2E00k4U";
+		var tvStatic = "tv_static.gif";
 		var channelIndex = 0;
 
 		var channelOrder = constructChannels();
