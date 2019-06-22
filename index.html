@@ -6,7 +6,6 @@
 	<style>
 
 		html {
-			/*background-color: #222;*/
 			background-color: #999a83;
 		}
 
@@ -54,15 +53,16 @@
 			height: 540px;
 			margin-top: 20px;
 			margin-left: 83px;
-			background-image: url("tv_static.gif");
+			background-image: url("img/tv_static.gif");
 		}
 
 		#tvFrame {
 			position: absolute;
 			z-index: 5;
 			top: 22px;
-			width: 1000px;
+			width: 999px;
 			height: 550px;
+			left: 1px;
 			pointer-events:none;
 		}
 
@@ -105,10 +105,10 @@
 		<h1>TV Guide</h1>
 		<h2>By <a href="">@NylePudding</a></h2>
 		<div style="position: relative;">
-			<img id="tvFrame" src="tv_frame_pixel.png">
-			<img id="tvScanline" src="tv_scanline2.png">
+			<img id="tvFrame" src="img/tv_frame_pixel.png">
+			<img id="tvScanline" src="img/tv_scanline2.png">
 
-			<iframe id="tv" src="tv_static.gif"></iframe>
+			<iframe id="tv" src="img/tv_static.gif"></iframe>
 
 			<br>
 			<br>
@@ -122,35 +122,30 @@
 
 		var tv = document.getElementById("tv");
 		var nextChannel = "";
-		var tvStatic = "tv_static.gif";
+		var tvStatic = "img/tv_static.gif";
 		var channelIndex = 0;
-
 		var channelOrder = constructChannels();
 
 		function changeChannel() {
 
 			tv.src = tvStatic;
 			nextChannel = channelOrder[channelIndex];
-			if (channelIndex < channelOrder.length) channelIndex++;
+			if (channelIndex < channelOrder.length -1) channelIndex++;
 
 			setTimeout(function(){
 				tv.src = nextChannel;
 			}, 500);
 		}
 
-		function afterNoise(){
-			tv.src = nextChannel;
-		}
-
 		function getChannelArrayBeforeFire() {
 
 			var channels = [];
 
-			channels.push("fever_ferret_itch.html?a=1");
-			channels.push("gone_fishing_itch.html?a=1");;
-			channels.push("rainbow_noodle_itch.html?a=1");
-			channels.push("reflection_itch.html?a=1");
-			channels.push("a_sour_taste_itch.html?a=1");
+			channels.push("channels/fever_ferret.html?a=1");
+			channels.push("channels/gone_fishing.html?a=1");;
+			channels.push("channels/rainbow_noodle.html?a=1");
+			channels.push("channels/reflection.html?a=1");
+			channels.push("channels/a_sour_taste.html?a=1");
 
 			return shuffle(channels);
 		}
@@ -159,13 +154,13 @@
 
 			var channels = [];
 
-			channels.push("cube_pyramid_sphere_itch.html?a=1");
-			channels.push("extra_nutrition_itch.html?a=1");
-			channels.push("good_television_itch.html?a=1");
-			channels.push("has_anyone_seen_the_remote_itch.html?a=1");
-			channels.push("ripple_itch.html?a=1");
-			channels.push("tiny_bean_itch.html?a=1");
-			channels.push("whats_going_on_itch.html?a=1");
+			channels.push("channels/cube_pyramid_sphere.html?a=1");
+			channels.push("channels/extra_nutrition.html?a=1");
+			channels.push("channels/good_television.html?a=1");
+			channels.push("channels/has_anyone_seen_the_remote.html?a=1");
+			channels.push("channels/ripple.html?a=1");
+			channels.push("channels/tiny_bean.html?a=1");
+			channels.push("channels/whats_going_on.html?a=1");
 
 			return shuffle(channels);
 		}
@@ -175,15 +170,13 @@
 			var channels = [];
 
 			channels = getChannelArrayBeforeFire();
-
-			channels.push("fire_itch.html?a=1");
-			channels.push("perfect_eggs_itch.html?a=1");
+			channels.push("channels/fire.html?a=1");
+			channels.push("channels/perfect_eggs.html?a=1");
 			channels = channels.concat(getChannelArrayAfterFire());
-			channels.push("bubbles_itch.html?a=1");
+			channels.push("channels/bubbles.html?a=1");
+			channels.push("img/tv_static.gif");
 
 			return channels;
-
-
 		}
 
 		function shuffle(array) {
